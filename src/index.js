@@ -3,8 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-ReactDOM.render (<App />, document.getElementById ('root'));
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+import reducers from './reducers';
+
+const store = createStore (
+  reducers, //Todos los reducers
+  {} // Estado inicial
+);
+
+ReactDOM.render (
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById ('root')
+);
