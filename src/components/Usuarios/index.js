@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Ripple from '../General/Ripple';
 
 import * as usuariosActions from '../../actions/usuariosActions';
 
@@ -7,6 +8,27 @@ class Usuarios extends Component {
   componentDidMount () {
     this.props.traerTodos ();
   }
+
+  ponerContenido = () => {
+    if (this.props.cargando) {
+      return <Ripple />;
+    }
+
+    return (
+      <table className="tabla">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Enlace</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.ponerFilas ()}
+        </tbody>
+      </table>
+    );
+  };
 
   ponerFilas = () =>
     this.props.usuarios.map (usuario => (
@@ -28,18 +50,7 @@ class Usuarios extends Component {
     // console.log (this.props.error);
     return (
       <div>
-        <table className="tabla">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Enlace</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.ponerFilas ()}
-          </tbody>
-        </table>
+        {this.ponerContenido ()}
       </div>
     );
   }
