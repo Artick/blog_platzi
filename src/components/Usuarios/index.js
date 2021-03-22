@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Ripple from '../General/Ripple';
 import Fatal from '../General/Fatal';
+import Tabla from './Tabla';
 
 import * as usuariosActions from '../../actions/usuariosActions';
 
@@ -19,42 +20,17 @@ class Usuarios extends Component {
       return <Fatal mensaje={this.props.error} />;
     }
 
-    return (
-      <table className="tabla">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Enlace</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.ponerFilas ()}
-        </tbody>
-      </table>
-    );
+    return <Tabla />;
   };
-
-  ponerFilas = () =>
-    this.props.usuarios.map (usuario => (
-      <tr key={usuario.id}>
-        <td>
-          {usuario.name}
-        </td>
-        <td>
-          {usuario.email}
-        </td>
-        <td>
-          {usuario.website}
-        </td>
-      </tr>
-    ));
 
   render () {
     // console.log (this.props.cargando);
     // console.log (this.props.error);
     return (
       <div>
+        <h1>
+          Usuarios
+        </h1>
         {this.ponerContenido ()}
       </div>
     );
