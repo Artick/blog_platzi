@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Ripple from '../General/Ripple';
+import Fatal from '../General/Fatal';
 
 import * as usuariosActions from '../../actions/usuariosActions';
 
@@ -12,6 +13,10 @@ class Usuarios extends Component {
   ponerContenido = () => {
     if (this.props.cargando) {
       return <Ripple />;
+    }
+
+    if (this.props.error) {
+      return <Fatal mensaje={this.props.error} />;
     }
 
     return (
